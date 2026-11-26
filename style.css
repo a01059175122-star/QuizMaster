@@ -1,0 +1,572 @@
+/* ===== 기본 설정 및 색상 변수 ===== */
+:root {
+  --bg-gradient-start: #eef2ff;
+  --bg-gradient-end: #f8fafc;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --text-main: #0f172a;
+  --text-sub: #475569;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-soft: #eef2ff;
+  --success: #16a34a;
+  --success-soft: #dcfce7;
+  --danger: #dc2626;
+  --danger-soft: #fee2e2;
+  --shadow-card: 0 18px 40px -15px rgba(15, 23, 42, 0.12);
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(circle at top right, #e0e7ff 0%, transparent 45%),
+    linear-gradient(160deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 전체 앱을 감싸는 중앙 컨테이너 */
+.app-container {
+  width: 100%;
+  max-width: 680px;
+}
+
+/* 카드 공통 스타일 */
+.card {
+  background: var(--surface);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 36px 32px;
+}
+
+/* 화면 전환 제어 */
+.screen {
+  animation: fadeSlideIn 0.28s ease-out;
+}
+
+.screen[hidden] {
+  display: none;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 시작 화면 ===== */
+#start-screen {
+  text-align: center;
+}
+
+.brand-badge {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 24px -8px rgba(79, 70, 229, 0.5);
+}
+
+.brand-badge svg {
+  width: 34px;
+  height: 34px;
+}
+
+.eyebrow {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+}
+
+.app-title {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--text-sub);
+  margin-bottom: 26px;
+}
+
+.info-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.chip {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+/* ===== 버튼 공통 스타일 ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:focus-visible,
+.option-btn:focus-visible,
+.filter-btn:focus-visible {
+  outline: 3px solid rgba(79, 70, 229, 0.4);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 10px 20px -8px rgba(79, 70, 229, 0.55);
+}
+
+.btn-secondary {
+  background: var(--surface-muted);
+  color: var(--text-sub);
+  border: 1px solid var(--border);
+  padding: 14px 22px;
+  font-size: 1rem;
+}
+
+.btn-lg {
+  width: 100%;
+  min-height: 54px;
+  padding: 15px 28px;
+  font-size: 1.08rem;
+}
+
+@media (hover: hover) {
+  .btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+  .btn-secondary:hover {
+    background: #eef2f6;
+  }
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* ===== 퀴즈 진행 화면 ===== */
+.quiz-header {
+  margin-bottom: 28px;
+}
+
+.quiz-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.progress-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 10%;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.question-text {
+  font-size: clamp(1.2rem, 3.2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--text-main);
+  margin-bottom: 24px;
+  word-break: keep-all;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-btn {
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.option-number {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.option-label {
+  flex: 1;
+  word-break: keep-all;
+}
+
+@media (hover: hover) {
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+  }
+  .option-btn:hover:not(:disabled) .option-number {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+  }
+}
+
+.option-btn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.option-btn.selected {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.option-btn.selected .option-number {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.quiz-hint {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ===== 결과 및 해설 화면 ===== */
+#result-screen:not([hidden]) {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.result-summary-card {
+  text-align: center;
+}
+
+.result-heading {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.result-message {
+  color: var(--text-sub);
+  font-size: 1.02rem;
+  margin-bottom: 24px;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.score-box {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 14px;
+}
+
+.score-box.highlight {
+  background: var(--primary-soft);
+  border-color: #c7d2fe;
+}
+
+.score-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+
+.score-value {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.score-box.highlight .score-value {
+  color: var(--primary);
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 해설 카드 섹션 */
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.review-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.review-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.filter-group {
+  display: inline-flex;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.filter-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-sub);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.review-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  background: #ffffff;
+}
+
+.review-item.is-correct {
+  border-left: 5px solid var(--success);
+}
+
+.review-item.is-wrong {
+  border-left: 5px solid var(--danger);
+}
+
+.review-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.review-q-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.status-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.status-badge.correct {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.status-badge.wrong {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.review-question {
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  word-break: keep-all;
+}
+
+.answer-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.93rem;
+  margin-bottom: 12px;
+}
+
+.user-answer-text.wrong {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.user-answer-text.correct {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.correct-answer-text {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.explanation-box {
+  background: var(--surface-muted);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  color: var(--text-sub);
+  word-break: keep-all;
+}
+
+.empty-review {
+  text-align: center;
+  padding: 28px 16px;
+  color: var(--text-sub);
+  background: var(--surface-muted);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+}
+
+/* ===== 스마트폰 화면 대응 (가로 600px 이하) ===== */
+@media (max-width: 600px) {
+  body {
+    padding: 16px 12px;
+    align-items: flex-start;
+  }
+
+  .card {
+    padding: 26px 20px;
+    border-radius: 18px;
+  }
+
+  .option-btn {
+    padding: 13px 14px;
+    font-size: 0.96rem;
+  }
+
+  .score-grid {
+    gap: 10px;
+  }
+
+  .review-item {
+    padding: 16px 14px;
+  }
+}

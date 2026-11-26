@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <!-- 스마트폰 화면 크기에 맞게 자동으로 비율을 조절하는 설정 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Master - 일반 상식 퀴즈</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-container">
+    <!-- 1. 시작 화면 -->
+    <section id="start-screen" class="card screen active" aria-labelledby="app-title">
+      <div class="brand-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z" />
+        </svg>
+      </div>
+
+      <p class="eyebrow">일반 상식 챌린지</p>
+      <h1 id="app-title" class="app-title">Quiz Master</h1>
+      <p class="subtitle">
+        다양한 분야의 일반 상식 10문제를 풀고<br />
+        나의 상식 점수를 확인해 보세요!
+      </p>
+
+      <ul class="info-chips" aria-label="퀴즈 안내">
+        <li class="chip">총 10문제</li>
+        <li class="chip">객관식 4지선다</li>
+        <li class="chip">정답 및 해설 제공</li>
+      </ul>
+
+      <button id="start-btn" class="btn btn-primary btn-lg" type="button">
+        퀴즈 시작
+      </button>
+    </section>
+
+    <!-- 2. 퀴즈 진행 화면 -->
+    <section id="quiz-screen" class="card screen" aria-live="polite" hidden>
+      <header class="quiz-header">
+        <div class="quiz-meta">
+          <span id="question-category" class="category-badge">분야</span>
+          <span id="progress-text" class="progress-text">1 / 10</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="10" aria-valuenow="1" id="progress-bar-container">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+      </header>
+
+      <div class="question-body">
+        <h2 id="question-text" class="question-text">문제가 여기에 표시됩니다.</h2>
+        <div id="options-container" class="options-list" role="group" aria-label="선택지">
+          <!-- JavaScript에서 4개의 선택지 버튼을 자동으로 만들어 넣습니다 -->
+        </div>
+      </div>
+
+      <p class="quiz-hint">선택지를 클릭하면 다음 문제로 넘어갑니다.</p>
+    </section>
+
+    <!-- 3. 결과 및 해설 화면 -->
+    <section id="result-screen" class="screen" hidden>
+      <div class="card result-summary-card">
+        <p class="eyebrow">퀴즈 완료</p>
+        <h2 class="result-heading">결과 확인</h2>
+        <p id="result-message" class="result-message">수고하셨습니다!</p>
+
+        <div class="score-grid">
+          <div class="score-box">
+            <span class="score-label">맞힌 개수</span>
+            <strong id="correct-count" class="score-value">0 / 10</strong>
+          </div>
+          <div class="score-box highlight">
+            <span class="score-label">최종 점수</span>
+            <strong id="total-score" class="score-value">0점</strong>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button id="retry-btn" class="btn btn-primary btn-lg" type="button">
+            다시 풀기
+          </button>
+          <button id="home-btn" class="btn btn-secondary" type="button">
+            처음 화면으로
+          </button>
+        </div>
+      </div>
+
+      <section class="card review-card" aria-labelledby="review-title">
+        <div class="review-header">
+          <div>
+            <h3 id="review-title" class="review-title">정답 및 해설</h3>
+            <p class="review-subtitle">각 문제의 내가 고른 답과 정답, 해설을 확인하세요.</p>
+          </div>
+          <div class="filter-group" role="tablist" aria-label="해설 필터">
+            <button id="filter-all" class="filter-btn active" type="button" role="tab" aria-selected="true">
+              전체
+            </button>
+            <button id="filter-wrong" class="filter-btn" type="button" role="tab" aria-selected="false">
+              오답만
+            </button>
+          </div>
+        </div>
+
+        <div id="review-list" class="review-list">
+          <!-- JavaScript에서 각 문제의 정답과 해설 카드를 만들어 넣습니다 -->
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
